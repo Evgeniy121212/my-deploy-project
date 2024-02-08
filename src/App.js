@@ -1,33 +1,50 @@
+import React, { useState } from "react";
+import logo from "./logo.svg";
 import "./App.css";
-import { HashRouter, Routes, Route } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 
-const Navbar = ({ children }) => {
-  return (
-    <>
-      <div>
-        <Link to="/">Home</Link> {' '}
-        <Link to="/about">About</Link> {' '}
-        <Link to="/example">Careers</Link>
-      </div>
-      <h4>{children}</h4>
-    </>
-  );
-};
+import { IntlProvider } from "react-intl";
+import Russian from "./lang/ru.json";
+import English from "./lang/en.json";
+
 
 function App() {
+  const [locale, setLocale] = useState("en");
+
+  // TODO: switch-case
+  let lang;
+  if (locale === "ru") {
+    lang = Russian;
+  } else {
+    lang = English;
+  }
+
   return (
-    <div className="App">
-      <HashRouter>
-        <Routes>
-          <Route path="/" element={<Navbar>Root page</Navbar>} />
-          <Route path="/about" element={<Navbar>About page</Navbar>} />
-          <Route path="/example" element={<Navbar>Example page</Navbar>} />
-        </Routes>
-      </HashRouter>
-    </div>
+    <IntlProvider locale={locale} messages={lang}>
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>
+            <FormattedMessage id="app.header" />
+          </p>
+          <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FormattedMessage id="app.content" />
+          </a>
+          <FormattedMessage id="app.channel.plug" />
+
+          <select value={locale} onChange={(e) => setLocale(e.target.value)}>
+            <option value="ru" selected={locale === 'ru'}>Russian</option>
+            <option value="en" selected={locale === 'en'}>English</option>
+          </select>
+        </header>
+      </div>
+    </IntlProvider>
   );
 }
 
 export default App;
-
