@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Navbar = ({ children }) => {
@@ -8,7 +8,7 @@ const Navbar = ({ children }) => {
       <div>
         <Link to="/">Home</Link> {' '}
         <Link to="/about">About</Link> {' '}
-        <Link to="/careers">Careers</Link>
+        <Link to="/example">Careers</Link>
       </div>
       <h4>{children}</h4>
     </>
@@ -18,14 +18,13 @@ const Navbar = ({ children }) => {
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
-          <Route path="*" element={<Navbar>Error page</Navbar>} />
           <Route path="/" element={<Navbar>Root page</Navbar>} />
           <Route path="/about" element={<Navbar>About page</Navbar>} />
           <Route path="/example" element={<Navbar>Example page</Navbar>} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
