@@ -1,5 +1,5 @@
 import "./App.css";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Navbar = ({ children }) => {
@@ -18,13 +18,13 @@ const Navbar = ({ children }) => {
 function App() {
   return (
     <div className="App">
-      <HashRouter>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navbar>Root page</Navbar>} />
           <Route path="/about" element={<Navbar>About page</Navbar>} />
           <Route path="/example" element={<Navbar>Example page</Navbar>} />
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
     </div>
   );
 }
